@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gramin Setu | Project Portfolio</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f9f6;
+  color: #26352b;
+  line-height: 1.7;
+}
+
+header {
+  background: #123d2b;
+  color: white;
+  padding: 18px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+header h2 { color: #f5c66a; }
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 9px;
+  font-size: 14px;
+}
+
+.hero {
+  background: linear-gradient(120deg, #123d2b, #28734c);
+  color: white;
+  text-align: center;
+  padding: 85px 20px;
+}
+
+.hero h1 {
+  font-size: 42px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  max-width: 700px;
+  margin: auto;
+  font-size: 18px;
+}
+
+.btn {
+  display: inline-block;
+  margin: 22px 8px 0;
+  padding: 12px 24px;
+  border-radius: 7px;
+  background: #f5bd53;
+  color: #183b28;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.btn.outline {
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+}
+
+section {
+  padding: 60px 9%;
+}
+
+section h2 {
+  color: #17623c;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+section p { margin-bottom: 12px; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 14px #00000012;
+  border-top: 4px solid #29945a;
+}
+
+.card h3 {
+  color: #17623c;
+  margin-bottom: 10px;
+}
+
+.soft { background: #eaf3ec; }
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.tags span {
+  background: #dceee1;
+  color: #175b36;
+  padding: 9px 17px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.workflow {
+  max-width: 750px;
+  margin: 20px auto;
+}
+
+.workflow div {
+  background: white;
+  margin: 12px 0;
+  padding: 15px 20px;
+  border-left: 5px solid #29945a;
+  border-radius: 6px;
+}
+
+.center { text-align: center; }
+
+footer {
+  background: #123d2b;
+  color: white;
+  text-align: center;
+  padding: 28px 15px;
+}
+
+@media(max-width:600px) {
+  .hero h1 { font-size: 32px; }
+  header { justify-content: center; }
+  nav { text-align: center; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>🌾 Gramin Setu</h2>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#features">Features</a>
+    <a href="#technology">Technology</a>
+    <a href="#workflow">Workflow</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>Gramin Setu</h1>
+  <h3>A Voice-Based Digital Assistant for Farmers</h3>
+  <p>
+    Bridging the digital divide through multilingual
+    voice assistance and easier access to government
+    digital services.
+  </p>
+
+  <a class="btn"
+     href="https://kirteesharma72-ops.github.io/gramin-setu-Voice/">
+     Explore Live Demo
+  </a>
+
+  <a class="btn outline"
+     href="https://github.com/kirteesharma72-ops/gramin-setu-Voice">
+     View GitHub Repository
+  </a>
+</div>
+
+<section id="about">
+  <h2>About the Project</h2>
+  <p>
+    Gramin Setu is a multilingual, voice-assisted web
+    platform developed to make digital government
+    services easier to access for farmers and rural
+    communities.
+  </p>
+  <p>
+    Users can select a supported language and speak
+    a command. The prototype recognizes the spoken
+    request, identifies the intended service and
+    navigates to its official public portal.
+  </p>
+</section>
+
+<section class="soft">
+  <h2>Problem Statement</h2>
+  <p>
+    Many rural citizens face difficulties navigating
+    digital government services because of language
+    barriers, unfamiliar interfaces and limited digital
+    literacy.
+  </p>
+  <h2 style="margin-top:30px">Our Solution</h2>
+  <p>
+    Gramin Setu explores a simple voice-first interface
+    that helps users reach relevant government portals
+    using spoken commands.
+  </p>
+</section>
+
+<section id="features">
+  <h2>Key Features</h2>
+  <div class="cards">
+
+    <div class="card">
+      <h3>🎙️ Voice Commands</h3>
+      <p>Access services through spoken instructions.</p>
+    </div>
+
+    <div class="card">
+      <h3>🌐 Language Selection</h3>
+      <p>Language options include English, Hindi,
+      Marathi and Kannada.</p>
+    </div>
+
+    <div class="card">
+      <h3>🔍 Service Recognition</h3>
+      <p>Recognizes supported voice requests and
+      identifies the intended service.</p>
+    </div>
+
+    <div class="card">
+      <h3>🏛️ Government Portals</h3>
+      <p>Provides navigation to official portals such
+      as DigiLocker, Aadhaar and PM-KISAN.</p>
+    </div>
+
+    <div class="card">
+      <h3>📱 Simple Interface</h3>
+      <p>A straightforward interface designed with
+      accessibility in mind.</p>
+    </div>
+
+    <div class="card">
+      <h3>🌱 Digital Inclusion</h3>
+      <p>Explores ways to make digital services more
+      approachable for rural communities.</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="technology" class="soft">
+  <h2>Technologies Used</h2>
+  <p>Technologies used to develop and publish the prototype:</p>
+  <div class="tags">
+    <span>HTML5</span>
+    <span>CSS3</span>
+    <span>JavaScript</span>
+    <span>Web Speech API</span>
+    <span>GitHub</span>
+    <span>GitHub Pages</span>
+  </div>
+</section>
+
+<section id="workflow">
+  <h2>How It Works</h2>
+  <div class="workflow">
+    <div>01. User selects a language.</div>
+    <div>02. User presses the Speak Now button.</div>
+    <div>03. Browser speech recognition captures the command.</div>
+    <div>04. The prototype identifies a supported service.</div>
+    <div>05. The browser navigates to the corresponding official portal.</div>
+  </div>
+</section>
+
+<section class="soft">
+  <h2>Project Demonstration</h2>
+  <p>
+    During testing, the Hindi command
+    "DigiLocker खोलिए" successfully identified
+    the DigiLocker service and opened its official portal.
+  </p>
+  <p>
+    This is a working prototype demonstrating voice-based
+    service navigation. It does not directly integrate
+    with government databases or bypass official
+    authentication procedures.
+  </p>
+  <div class="center">
+    <a class="btn"
+       href="https://kirteesharma72-ops.github.io/gramin-setu-Voice/">
+       Try Gramin Setu
+    </a>
+  </div>
+</section>
+
+<section>
+  <h2>Future Scope</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>More Languages</h3>
+      <p>Expand regional language coverage.</p>
+    </div>
+    <div class="card">
+      <h3>Improved AI</h3>
+      <p>Explore more flexible voice intent recognition.</p>
+    </div>
+    <div class="card">
+      <h3>More Services</h3>
+      <p>Add more verified government service destinations.</p>
+    </div>
+    <div class="card">
+      <h3>Accessibility</h3>
+      <p>Improve usability for people with limited digital literacy.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <h2>🌾 Gramin Setu</h2>
+  <p>Technology for Rural Empowerment</p>
+  <p>Designed and developed as a student project.</p>
+  <p>© 2026 Gramin Setu Project</p>
+</footer>
+
+</body>
+</html>

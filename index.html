@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gramin Setu - Voice Assistant</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f7f1;
+    text-align: center;
+    color: #183b24;
+}
+
+header {
+    background: #176b3a;
+    color: white;
+    padding: 22px 10px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.container {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+select, button {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+select {
+    border: 1px solid #aaa;
+    background: white;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    color: white;
+    background: #176b3a;
+}
+
+button:hover {
+    background: #0e512b;
+}
+
+#mic {
+    font-size: 20px;
+    padding: 20px;
+    border-radius: 50px;
+    background: #e68a00;
+}
+
+.result {
+    background: white;
+    padding: 18px;
+    border-radius: 10px;
+    margin-top: 20px;
+    overflow-wrap: anywhere;
+}
+
+.service {
+    background: white;
+    padding: 15px;
+    margin: 12px 0;
+    border-radius: 10px;
+}
+
+.service a {
+    color: #176b3a;
+    font-weight: bold;
+}
+
+footer {
+    padding: 20px;
+    color: #555;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🌾 Gramin Setu</h1>
+    <p>Your Voice-Based Digital Assistant</p>
+</header>
+
+<div class="container">
+
+    <h2>Welcome, Farmer!</h2>
+    <p>Select your language and speak your command.</p>
+
+    <select id="language">
+        <option value="en-IN">English</option>
+        <option value="hi-IN">Hindi</option>
+        <option value="mr-IN">Marathi</option>
+        <option value="kn-IN">Kannada</option>
+    </select>
+
+    <button id="mic" onclick="startListening()">
+        🎤 Speak Now
+    </button>
+
+    <div class="result">
+        <h3>Recognized Voice</h3>
+        <p id="transcript">Your spoken words will appear here.</p>
+
+        <h3>Identified Service</h3>
+        <p id="service">Waiting for command...</p>
+
+        <p id="status" aria-live="polite"></p>
+    </div>
+
+    <h3>Government Services</h3>
+
+    <div class="service">
+        <p>🪪 Aadhaar Services</p>
+        <a href="https://myaadhaar.uidai.gov.in/"
+           target="_blank" rel="noopener">
+           Open Aadhaar Portal
+        </a>
+    </div>
+
+    <div class="service">
+        <p>📄 DigiLocker</p>
+        <a href="https://www.digilocker.gov.in/"
+           target="_blank" rel="noopener">
+           Open DigiLocker
+        </a>
+    </div>
+
+    <div class="service">
+        <p>🌱 PM-KISAN</p>
+        <a href="https://pmkisan.gov.in/"
+           target="_blank" rel="noopener">
+           Open PM-KISAN
+        </a>
+    </div>
+
+</div>
+
+<footer>
+    Gramin Setu | Digital Services for Rural India
+</footer>
+
+<script>
+const services = {
+    aadhaar: {
+        url: "https://myaadhaar.uidai.gov.in/",
+        name: "Aadhaar Services"
+    },
+    digilocker: {
+        url: "https://www.digilocker.gov.in/",
+        name: "DigiLocker"
+    },
+    pmkisan: {
+        url: "https://pmkisan.gov.in/",
+        name: "PM-KISAN"
+    }
+};
+
+function identifyService(text) {
+    const command = text.toLowerCase();
+
+    const patterns = [
+        {
+            key: "aadhaar",
+            words: [
+                "aadhaar", "aadhar", "आधार",
+                "आधार कार्ड", "ಆಧಾರ್", "आधार सेवा"
+            ]
+        },
+        {
+            key: "digilocker",
+            words: [
+                "digilocker", "digi locker",
+                "डिजिलॉकर", "डिजी लॉकर",
+                "ಡಿಜಿಲಾಕರ್"
+            ]
+        },
+        {
+            key: "pmkisan",
+            words: [
+                "pm kisan", "pm-kisan", "pmkisan",
+                "पीएम किसान", "पीएम किसान योजना",
+                "ಪಿಎಂ ಕಿಸಾನ್"
+            ]
+        }
+    ];
+
+    for (const item of patterns) {
+        if (item.words.some(word => command.includes(word))) {
+            return services[item.key];
+        }
+    }
+
+    return null;
+}
+
+function startListening() {
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+        document.getElementById("status").textContent =
+            "Voice recognition is not supported in this browser. Try a supported browser.";
+        return;
+    }
+
+    const recognition = new SpeechRecognition();
+
+    recognition.lang =
+        document.getElementById("language").value;
+
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    document.getElementById("status").textContent =
+        "Listening... Speak now.";
+
+    recognition.onresult = function(event) {
+        const spokenText =
+            event.results[0][0].transcript;
+
+        document.getElementById("transcript").textContent =
+            spokenText;
+
+        const result = identifyService(spokenText);
+
+        if (result) {
+            document.getElementById("service").textContent =
+                result.name;
+
+            document.getElementById("status").textContent =
+                "Service identified. Opening official portal...";
+
+            window.location.href = result.url;
+        } else {
+            document.getElementById("service").textContent =
+                "Service not recognized.";
+
+            document.getElementById("status").textContent =
+                "Please try Aadhaar, DigiLocker or PM-KISAN.";
+        }
+    };
+
+    recognition.onerror = function(event) {
+        document.getElementById("status").textContent =
+            "Voice recognition error: " + event.error;
+    };
+
+    recognition.onend = function() {
+        if (document.getElementById("status").textContent ===
+            "Listening... Speak now.") {
+            document.getElementById("status").textContent =
+                "No speech detected. Please try again.";
+        }
+    };
+
+    recognition.start();
+}
+</script>
+
+</body>
+</html>
